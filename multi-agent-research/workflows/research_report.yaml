@@ -1,0 +1,30 @@
+name: "Research Report"
+description: "Comprehensive research report on a given topic"
+max_iterations: 2
+steps:
+  - id: plan
+    agent: planner
+    input: "{topic}"
+    output: task_plan
+  - id: research
+    agent: researcher
+    input: "{task_plan.subtasks}"
+    parallel: true
+    output: research_findings
+  - id: analyze
+    agent: analyst
+    input: "{research_findings}"
+    output: analysis
+  - id: write
+    agent: writer
+    input: "{analysis}"
+    output: draft_report
+  - id: review
+    agent: critic
+    input: "{draft_report}"
+    output: review
+  - id: revise
+    agent: writer
+    input: "{draft_report, review.suggestions}"
+    condition: "review.approved == false"
+    output: final_report
