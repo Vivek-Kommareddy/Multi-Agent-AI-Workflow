@@ -1,0 +1,20 @@
+name: "Literature Review"
+description: "Summarize and critique literature on a topic"
+max_iterations: 1
+steps:
+  - id: plan
+    agent: planner
+    input: "{topic}"
+    output: task_plan
+  - id: research
+    agent: researcher
+    input: "{task_plan.subtasks}"
+    output: research_findings
+  - id: analyze
+    agent: analyst
+    input: "{research_findings}"
+    output: analysis
+  - id: write
+    agent: writer
+    input: "{analysis}"
+    output: draft_report

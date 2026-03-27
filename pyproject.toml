@@ -1,0 +1,19 @@
+[project]
+name = "multi-agent-research"
+version = "0.1.0"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+# mypy 1.x introduced a separate [import-untyped] error code for libraries that
+# exist but ship no type stubs.  ignore_missing_imports no longer suppresses it,
+# so we disable it explicitly (we install stubs where available and accept the
+# rest as a known limitation of the dependency set).
+disable_error_code = ["import-untyped"]
